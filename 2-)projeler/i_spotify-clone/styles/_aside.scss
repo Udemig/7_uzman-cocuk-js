@@ -1,0 +1,58 @@
+aside {
+  background-color: $grayColor;
+  padding: 20px;
+  border-radius: 10px;
+  @include xl {
+    padding: 20px 10px;
+  }
+
+  figure {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    img {
+      width: 40px;
+    }
+
+    span {
+      font-size: 25px;
+      font-weight: bold;
+      color: $greenColor;
+      @include lg {
+        display: none;
+      }
+    }
+  }
+
+  nav {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      gap: 10px;
+      white-space: nowrap;
+      color: $textColor;
+      border-radius: 10px;
+      &:hover {
+        background-color: $greenColor;
+        color: $blackColor;
+      }
+
+      i {
+        @include lg {
+          font-size: 20px;
+        }
+      }
+
+      span {
+        @include lg {
+          display: none;
+        }
+      }
+    }
+  }
+}
