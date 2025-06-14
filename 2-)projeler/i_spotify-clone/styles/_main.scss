@@ -73,6 +73,7 @@ main {
 
     // Music List
     #music-list {
+      position: relative;
       height: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -85,7 +86,10 @@ main {
         border-radius: 10px;
         display: flex;
         flex-direction: column;
-        height: fit-content;
+        height: 350px;
+        @include md {
+          height: fit-content !important;
+        }
         &:hover .play-icon {
           opacity: 1;
           bottom: 20px;
@@ -110,6 +114,10 @@ main {
             transition: all 0.3s ease;
             cursor: pointer;
             opacity: 0;
+
+            i {
+              pointer-events: none; // İcon'un imleç olayını sıfırla
+            }
             &:hover {
               background: #0f6d32;
               transform: rotate(360deg) scale(1.1);
@@ -121,6 +129,7 @@ main {
           height: 100%;
           display: flex;
           flex-direction: column;
+          justify-content: space-between;
           gap: 10px;
           h4 {
             color: #d1d1d1;

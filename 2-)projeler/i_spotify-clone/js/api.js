@@ -15,7 +15,7 @@ class API {
   async getPopular() {
     // Api isteği at
     const response = await fetch(
-      `${this.baseURL}/search?term=kiss%20the%20rain`,
+      `${this.baseURL}/search?term=cemkaraca`,
       this.options
     );
 
@@ -24,6 +24,26 @@ class API {
 
     // Gelen veriyi projede kullanmak istediğimiz şekilde dönder
     return data.tracks.hits.map((item) => item.track);
+  }
+
+  // Search Music
+  async searchMusic(query) {
+    // Dışarıdan verilen arama parametresine göre api isteği at
+    const response = await fetch(
+      `${this.baseURL}/search?term=${query}`,
+      this.options
+    );
+
+    // Api'dan gelen veriyi js nesnesine çevir
+    const data = await response.json();
+
+    // Api'dan gelen veriyi projede kullanılacak  formata getir
+
+    const formattedData = data.tracks.hits.map((i) => i.track);
+
+    // formattedData'yı return et
+
+    return formattedData;
   }
 }
 
