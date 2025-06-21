@@ -1,0 +1,62 @@
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+
+  // Info
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    // Image
+    img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+    }
+
+    // Details
+    div {
+      h5 {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      p {
+        color: rgb(150, 150, 150);
+      }
+    }
+  }
+
+  // Audio
+  audio {
+    width: 40%;
+  }
+
+  // Icons
+  .icons {
+    display: flex;
+    gap: 20px;
+    font-size: 20px;
+    @include md {
+      display: none;
+    }
+  }
+}
+
+// Animation
+@keyframes turn {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Animasyonu resim elemanına eklemek için class
+.animate {
+  animation: turn 4s infinite linear;
+}

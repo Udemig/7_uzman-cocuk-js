@@ -197,6 +197,55 @@ main section #music-list .card .card-info h4 {
   color: #d1d1d1;
 }
 
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.player .info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.player .info img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.player .info div h5 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.player .info div p {
+  color: rgb(150, 150, 150);
+}
+.player audio {
+  width: 40%;
+}
+.player .icons {
+  display: flex;
+  gap: 20px;
+  font-size: 20px;
+}
+@media (max-width: 768px) {
+  .player .icons {
+    display: none;
+  }
+}
+
+@keyframes turn {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate {
+  animation: turn 4s infinite linear;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: black;

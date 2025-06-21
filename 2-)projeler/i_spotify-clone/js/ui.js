@@ -3,6 +3,7 @@ const uiElements = {
   list: document.querySelector("#music-list"),
   form: document.querySelector("form"),
   title: document.querySelector("#title"),
+  player: document.querySelector(".player"),
 };
 // Şarkı card'ı render edecek fonksiyon
 const renderCard = (songs) => {
@@ -64,4 +65,55 @@ const renderLoader = (outlet) => {
 </div>`;
 };
 
-export { uiElements, renderCard, renderLoader };
+// Player kısmını dinamik şekilde render eden fonksiyon
+const renderPlayer = (song) => {
+  // Player kısmının html içeriğini belirle
+  uiElements.player.innerHTML = `
+  
+  
+      <div class="info">
+     
+        <img
+          src="${song.image}"
+          alt="song-image"
+        />
+
+        
+        <div>
+          <h5>${song.title}</h5>
+          <p>${song.subtitle}</p>
+        </div>
+      </div>
+    
+      <audio
+        src="${song.mp3}"
+        controls autoplay
+      ></audio>
+
+      
+      <div class="icons">
+        <i class="bi bi-music-note-list"></i>
+        <i class="bi bi-boombox-fill"></i>
+        <i class="bi bi-pc-display"></i>
+      </div>`;
+
+  // Player içerisinde yer alan audio etiketine eriş
+  const audio = uiElements.player.querySelector("audio");
+
+  // Player içerisinde yer alan resime eriş
+  const image = uiElements.player.querySelector(".info img");
+
+  // Audio etiketinin oynatılma ve durdurulma anını izle
+
+  audio.addEventListener("play", () => {
+    // Audio etiketinin oynatılma anında resime animate classı ekle
+    image.classList.add("animate");
+  });
+
+  audio.addEventListener("pause", () => {
+    // Audio etiketinin durdurulma anında resime animate classını kaldır
+    image.classList.remove("animate");
+  });
+};
+
+export { uiElements, renderCard, renderLoader, renderPlayer };

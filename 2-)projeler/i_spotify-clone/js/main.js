@@ -1,5 +1,5 @@
 import API from "./api.js";
-import { renderCard, renderLoader, uiElements } from "./ui.js";
+import { renderCard, renderLoader, renderPlayer, uiElements } from "./ui.js";
 
 // Api classından bir örnek al
 const api = new API();
@@ -55,5 +55,6 @@ uiElements.list.addEventListener("click", (e) => {
     const songData = card.dataset;
 
     // Şarkı oynat
+    renderPlayer(songData);
   }
 });
