@@ -1,0 +1,125 @@
+/* * Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* * Css Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  border: none;
+  outline: none;
+}
+
+/* * Global Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #4158d0;
+  background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+  min-height: 100vh;
+}
+
+/* * Wrapper */
+.wrapper {
+  margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 265px);
+  gap: 25px;
+}
+
+.wrapper .add-box,
+.wrapper .note {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 250px;
+  padding: 15px 20px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.wrapper .add-box {
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+  padding: 15px 20px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.wrapper .add-box .icon {
+  color: #c850c0;
+  width: 78px;
+  height: 78px;
+  border: 2px dashed #c850c0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 30px;
+}
+.wrapper .add-box p {
+  color: #c850c0;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.wrapper .note {
+  justify-content: space-between;
+}
+.wrapper .note .details {
+  max-height: 165px;
+  overflow-y: auto;
+}
+
+.wrapper .note .details h3 {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.wrapper .note .details p {
+  color: #575757;
+  font-size: 16px;
+  margin-top: 5px;
+}
+.wrapper .note .bottom-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+.wrapper .note .bottom-content span {
+  color: #6d6d6d;
+  font-size: 14px;
+}
+
+.wrapper .note .bottom-content .settings {
+  position: relative;
+}
+.wrapper .note .bottom-content .settings i {
+  color: #6d6d6d;
+  cursor: pointer;
+  font-size: 15px;
+}
+.wrapper .note .bottom-content .settings .menu {
+  position: absolute;
+  bottom: 0;
+  right: -5px;
+  z-index: 1;
+  transform: scale(0);
+  padding: 5px 0;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+}
+.wrapper .note .bottom-content .settings .menu li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
