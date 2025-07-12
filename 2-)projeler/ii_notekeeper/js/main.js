@@ -7,9 +7,13 @@ const popup = document.querySelector(".popup");
 const closeBtn = document.querySelector("#close-btn");
 const form = document.querySelector("form");
 const wrapper = document.querySelector(".wrapper");
+const popupTitle = document.querySelector("#title");
+const popupButton = document.querySelector("#submit-btn");
 
 // ! Global Değişkenler
 let notes = [];
+let isUpdate = false;
+let updateId = null;
 
 // * addBox'a tıklanınca popup'ı görünür kıl
 addBox.addEventListener("click", () => {
@@ -66,16 +70,45 @@ form.addEventListener("submit", (e) => {
   // Id değerine eriş
   const id = date.getTime();
 
-  // Bir note objesi oluştur
-  const noteItem = {
-    title,
-    description,
-    id,
-    date: `${month} ${day},${year}`,
-  };
+  // Formu hem gönderme hemde güncelleme işlemi için kullanalım
 
-  // notes dizisine note elemanını ekle
-  notes.push(noteItem);
+  if (isUpdate) {
+    // Güncellenecek elemanın index'ini notes dizisi içerisinden bul
+    const noteIndex = notes.findIndex((note) => note.id == updateId);
+
+    // Sırası bilinen notun değerlerini güncelle
+    notes[noteIndex] = {
+      title,
+      description,
+      id,
+      date: `${month} ${day},${year}`,
+    };
+
+    // Güncelleme modunu iptal et ve popup'ı kapat
+    isUpdate = false;
+    updateId = null;
+
+    popupBox.classList.remove("show");
+    popup.classList.remove("show");
+
+    // Arkaplan'ın kaydırılmasını eski haline getir
+    document.querySelector("body").style.overflow = "auto";
+
+    // Popup'ın title ve description değerlerini eski haline çevir
+    popupTitle.textContent = "Add New Note";
+    popupButton.textContent = "Add";
+  } else {
+    // Bir note objesi oluştur
+    const noteItem = {
+      title,
+      description,
+      id,
+      date: `${month} ${day},${year}`,
+    };
+
+    // notes dizisine note elemanını ekle
+    notes.push(noteItem);
+  }
 
   // Formu resetle
   form.reset();
@@ -95,8 +128,6 @@ function renderNotes() {
   // Mevcut notların hepsini arayüzden kaldır
   document.querySelectorAll(".note").forEach((item) => item.remove());
 
-  console.log(notes);
-  console.log("====================================");
   // notes dizisindeki her bir eleman için bir note kartı oluştur
   notes.forEach((note) => {
     // Note kartları için html
@@ -165,6 +196,34 @@ function deleteNote(item) {
   }
 }
 
+// ! Note'ları güncelleyecek fonksiyon
+function updateNote(item) {
+  // Güncellenecek elemanın id'sine eriş
+  const noteId = parseInt(item.closest(".note").dataset.id);
+
+  // Note dizisi içerisinde id'si bilinen note'u bul
+  const foundedNote = notes.find((note) => note.id == noteId);
+
+  // Güncelleme işlemi için gereken değişkenlere değer ataması yap
+  isUpdate = true;
+  updateId = noteId;
+
+  // Popup'ı aktif et
+  popupBox.classList.add("show");
+  popup.classList.add("show");
+
+  // Arkaplan'ın kaydırılmasını engelle
+  document.querySelector("body").style.overflow = "hidden";
+
+  // Popup'ın içerisindeki title ve description alanlarına değer ata
+  form[0].value = foundedNote.title;
+  form[1].value = foundedNote.description;
+
+  // Popup'ın title ve description değerlerini güncelle
+  popupTitle.textContent = "Update Note";
+  popupButton.textContent = "Update";
+}
+
 // * Wrapper kısmındaki tıklanmaları izle
 wrapper.addEventListener("click", (e) => {
   // Eğer ...'ya tıklandıysa
@@ -176,4 +235,7 @@ wrapper.addEventListener("click", (e) => {
     deleteNote(e.target);
   }
   // Eğer düzenleme butonuna tıklandıysa
+  else if (e.target.classList.contains("editIcon")) {
+    updateNote(e.target);
+  }
 });
